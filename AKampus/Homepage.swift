@@ -13,6 +13,7 @@ class Homepage: UIViewController {
     
     @IBOutlet weak var labelMessage: UILabel!
     
+    var userPoints = 0
     let textRecognizer = TextRecognizer.textRecognizer()
     
     override func viewDidLoad() {
@@ -73,8 +74,10 @@ class Homepage: UIViewController {
                 DispatchQueue.main.async {
                     print(resultText)
                     let recognizedText = resultText.lowercased()
-                    if recognizedText.contains("pantene"){
+                    if recognizedText.contains("fatura"){
                         self.labelMessage.alpha = 1
+                        self.userPoints += 10
+                        print("User Points : \(self.userPoints)")
                     }else{
                         let alert = UIAlertController(title: "Bulunamadı!", message: "Faturada Pantene bulunamadı.", preferredStyle: .alert)
                         let iptalAction = UIAlertAction(title: "İptal", style: .cancel)
