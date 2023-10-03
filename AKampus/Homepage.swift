@@ -20,10 +20,13 @@ class Homepage: UIViewController {
         super.viewDidLoad()
         
         labelMessage.alpha = 0
-        
     }
     // MARK: - Camera Button
     @IBAction func buttonCamera(_ sender: UIButton) {
+        cameraClicked()
+    }
+    // MARK: - Camera Clicked func
+    func cameraClicked(){
         labelMessage.alpha = 0
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
@@ -31,9 +34,12 @@ class Homepage: UIViewController {
         imagePicker.allowsEditing = false
         present(imagePicker, animated: true)
     }
-    
     // MARK: - Gallery Button
     @IBAction func buttonGallery(_ sender: Any) {
+        galleryClicked()
+    }
+    // MARK: - Gallery Clicked func
+    func galleryClicked(){
         labelMessage.alpha = 0
         var configuration = PHPickerConfiguration()
         configuration.selectionLimit = 1
@@ -74,7 +80,7 @@ class Homepage: UIViewController {
                 DispatchQueue.main.async {
                     print(resultText)
                     let recognizedText = resultText.lowercased()
-                    if recognizedText.contains("fatura"){
+                    if recognizedText.contains("pantene"){
                         self.labelMessage.alpha = 1
                         self.userPoints += 10
                         print("User Points : \(self.userPoints)")
